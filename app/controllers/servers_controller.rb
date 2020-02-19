@@ -3,13 +3,14 @@ class ServersController < ApplicationController
   before_action :set_server, only: [:show, :destroy]
 
   def index
+    @servers = Server.order("hostname asc")
   end
 
   def show
   end
 
   def new
-    @server = @user.servers.create
+    @server = Server.create
     return redirect_to server_path(@server)
   end
 
@@ -21,6 +22,6 @@ class ServersController < ApplicationController
   private
 
   def set_server
-    @server = @user.servers.find(params[:id])
+    @server = Server.find(params[:id])
   end
 end

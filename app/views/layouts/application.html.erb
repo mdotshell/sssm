@@ -12,32 +12,28 @@
   <%= csrf_meta_tags %>
   <%= csp_meta_tag %>
 
-  <link rel="shortcut icon" href="/img/favicon.png">
+  <link rel="shortcut icon" href="/img/logo.png">
 
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,700">
-  <link rel="stylesheet" href="https://unpkg.com/ionicons@4.4.8/dist/css/ionicons.min.css">
   <link rel="stylesheet" href="/css/bootstrap.min.css">
-  <link rel="stylesheet" href="/css/application.css">
   <link rel="stylesheet" href="/css/snackbar.min.css">
+  <link rel="stylesheet" href="/css/application.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Sans:400,700">
 
   <script src="/js/jquery-3.3.1.min.js"></script>
   <script src="/js/popper.min.js"></script>
   <script src="/js/bootstrap.min.js"></script>
   <script src="/js/snackbar.min.js"></script>
-  <script src="/js/autosize.min.js"></script>
-  <script src="/js/jquery.mask.min.js"></script>
-  <script src="/js/chartkick.min.js"></script>
   <script src="/js/highcharts.min.js"></script>
+  <script src="/js/chartkick.min.js"></script>
   <script src="/js/application.js"></script>
-  <script src="https://unpkg.com/feather-icons"></script>
 </head>
+
 <body>
 
 <%= render 'layouts/navbar' %>
 
 <%= yield %>
 
-<%= render 'layouts/footer' %>
 <script>
     $(function () {
         feather.replace();
@@ -47,6 +43,5 @@
         <% end %>
     });
 </script>
-
 </body>
 </html>

@@ -1,23 +1,18 @@
 class ApplicationController < ActionController::Base
-  protect_from_forgery with: :exception
+  skip_before_action :verify_authenticity_token
 
-  before_action :load_session
+  before_action :load_session, :define_url
 
   private
 
-  def sha1(string)
-    Digest::SHA1.hexdigest(string)
-  end
-
   def start_session(id)
-    puts 'Iniciando sessao ' + id
-    cookies[:user] = id
+    cookies[:user_id] = id
     return redirect_to servers_path
   end
 
   def load_session
-    if cookies[:user].present?
-      @user = User.where(id: cookies[:user]).first rescue nil
+    if cookies[:user_id].present?
+      @user = User.where(id: cookies[:user_id]).first rescue nil
       if @user.nil?
         destroy_session
       end
@@ -30,12 +25,16 @@ class ApplicationController < ActionController::Base
     destroy_session if @user.nil?
   end
 
-  def secutity_public
+  def security_public
     redirect_to servers_path unless @user.nil?
   end
 
   def destroy_session
-    cookies[:user] = nil
+    cookies[:user_id] = nil
     return redirect_to root_path
+  end
+
+  def define_url
+    @url = "#{request.protocol}#{request.host_with_port}"
   end
 end
